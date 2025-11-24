@@ -1,0 +1,41 @@
+.InputfieldRadiosImageLabel .image-label-option {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+/* Hide the radio button but keep it accessible */
+.InputfieldRadiosImageLabel input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+}
+
+/* Style the content container (which wraps the image or text) */
+.InputfieldRadiosImageLabel .content {
+    display: block;
+    border: 3px solid transparent; /* Placeholder for selection border */
+    transition: border-color 0.2s ease;
+}
+
+/* Checked state - highlight the content */
+.InputfieldRadiosImageLabel input[type="radio"]:checked + .content {
+    border-color: #3eb998; /* ProcessWire primary color approx */
+    outline: none;
+}
+
+/* Optional: Add some styles if it's just text, to make it look like a button */
+.InputfieldRadiosImageLabel .content:not(:has(img)) {
+    padding: 5px 10px;
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+
+.InputfieldRadiosImageLabel input[type="radio"]:checked + .content:not(:has(img)) {
+    background: #e0f0e9;
+    color: #111;
+}
