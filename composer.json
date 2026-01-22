@@ -1,0 +1,19 @@
+{
+  "name": "elabx/inputfield-radios-image-label",
+  "description": "ProcessWire Fieldtype and Inputfields for selecting options with images (Radios and Checkboxes)",
+  "type": "pw-module",
+  "keywords": ["processwire", "inputfield", "fieldtype", "options", "images", "radios", "checkboxes"],
+  "homepage": "https://github.com/elabx/InputfieldRadiosImageLabel",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Eduardo San Miguel Garcia",
+      "email": "abx88as@gmail.com",
+      "homepage": "https://github.com/elabx"
+    }
+  ],
+  "require": {
+    "wireframe-framework/processwire-composer-installer": "^1.1",
+    "php": ">=7.3"
+  }
+}
