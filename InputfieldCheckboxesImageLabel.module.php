@@ -58,15 +58,14 @@ class InputfieldCheckboxesImageLabel extends InputfieldCheckboxes
 			// But check if InputfieldCheckboxes logic requires strict name matching
 			$name = $this->name . "[]"; 
 
-			$label = $value;
 			// If an image is defined for this option key, use it
 			if (isset($imageMap[$key])) {
 				$imgUrl = $this->wire('sanitizer')->url($imageMap[$key]);
 				$minWidth = isset($this->optionImageMinWidth) ? (int)$this->optionImageMinWidth : 100;
 				$label = "<img src='$imgUrl' alt='" . $this->wire('sanitizer')->entities($value) . "' style='min-width: {$minWidth}px;' />";
 			} else {
-				// Fallback to text label, respecting entityEncode
-				$label = $this->entityEncode ? $this->wire('sanitizer')->entities($value) : $value;
+				// Fallback to text label (entity-encoded for safety)
+				$label = $this->wire('sanitizer')->entities($value);
 			}
 
 			$out .= "<label for='$id' class='image-label-option'>";

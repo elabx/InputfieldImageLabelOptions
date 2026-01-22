@@ -15,17 +15,32 @@ This module implements the technique described in [this Stack Overflow answer](h
 
 ## Usage with FieldtypeOptions
 
-1. Create or edit a field of type **Options** (`FieldtypeOptions`).
-2. In the **Details** tab, define your options. 
-   - If you want to use images, you can include HTML `<img>` tags in the option labels.
+### Using FieldtypeImageLabelOptions (Recommended)
+
+1. Create or edit a field of type **Image Label Options** (`FieldtypeImageLabelOptions`).
+2. In the **Details** tab, define your options (text labels only).
    - Example Options:
      ```
-     small=<img src='/site/templates/img/small.png' alt='Small'>
-     medium=<img src='/site/templates/img/medium.png' alt='Medium'>
-     large=<img src='/site/templates/img/large.png' alt='Large'>
+     small=Small
+     medium=Medium
+     large=Large
      ```
+3. In the field configuration, set up the **Option Images** mapping:
+   - Enter one mapping per line in the format: `option_id=image_url` or `option_value=image_url`
+   - Example:
+     ```
+     small=/site/templates/img/small.png
+     medium=/site/templates/img/medium.png
+     large=/site/templates/img/large.png
+     ```
+   - If an option doesn't have an image mapping, it will display as a text label.
+
+### Using Regular FieldtypeOptions
+
+1. Create or edit a field of type **Options** (`FieldtypeOptions`).
+2. In the **Details** tab, define your options.
 3. In the **Input** tab, change the **Inputfield Type** to **Inputfield Radios Image Label**.
-4. **Important:** If you are using HTML (like `<img>` tags) in your option labels, you must set **Entity Encode** to **No** (or "None") in the Input tab settings for this field. Otherwise, the HTML tags will be escaped and visible as text.
+4. Note: To use images, you'll need to set the `optionImages` property programmatically or use the `FieldtypeImageLabelOptions` fieldtype which provides a UI for this.
 
 ## Customization
 
