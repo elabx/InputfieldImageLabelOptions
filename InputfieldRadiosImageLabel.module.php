@@ -26,13 +26,8 @@ class InputfieldRadiosImageLabel extends InputfieldRadios
 	{
 		$inputfields = parent::getConfigInputfields();
 
-		/** @var InputfieldTextarea $f */
-		$f = $this->wire('modules')->get('InputfieldTextarea');
-		$f->attr('name', 'optionImages');
-		$f->label = $this->_('Option Images');
-		$f->description = $this->_('Enter one per line in the format: value=image_url');
-		$f->notes = $this->_('Example: \nred=/site/assets/red.png\nblue=/site/assets/blue.png');
-		$inputfields->add($f);
+		// Note: optionImages is configured at the Field level (FieldtypeImageLabelOptions),
+		// not at the Inputfield level, to avoid conflicts when inputfieldClass is explicitly set.
 
 		return $inputfields;
 	}
@@ -62,24 +57,8 @@ class InputfieldRadiosImageLabel extends InputfieldRadios
 			// If an image is defined for this option key, use it
 			if (isset($imageMap[$key])) {
 				$imgUrl = $this->wire('sanitizer')->url($imageMap[$key]);
-				$path = parse_url($imgUrl, PHP_URL_PATH);
-				$ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-
-				$svgContent = '';
-				if ($ext === 'svg') {
-					$rootPath = $this->wire('config')->paths->root;
-					// Remove leading slash from path to append to root
-					$filePath = $rootPath . ltrim($path, '/');
-					if (file_exists($filePath)) {
-						$svgContent = file_get_contents($filePath);
-					}
-				}
-
-				if ($svgContent) {
-					$label = $svgContent;
-				} else {
-					$label = "<img src='$imgUrl' alt='" . $this->wire('sanitizer')->entities($value) . "' />";
-				}
+				$minWidth = isset($this->optionImageMinWidth) ? (int)$this->optionImageMinWidth : 100;
+				$label = "<img src='$imgUrl' alt='" . $this->wire('sanitizer')->entities($value) . "' style='min-width: {$minWidth}px;' />";
 			} else {
 				// Fallback to text label, respecting entityEncode
 				$label = $this->entityEncode ? $this->wire('sanitizer')->entities($value) : $value;

@@ -79,6 +79,14 @@ class FieldtypeImageLabelOptions extends FieldtypeOptions implements Module {
 			$inputfield->optionImages = $field->optionImages;
 		}
 
+		// Pass the optionImageMinWidth configuration to the Inputfield
+		if($field->optionImageMinWidth) {
+			$inputfield->optionImageMinWidth = $field->optionImageMinWidth;
+		} else {
+			// Default to 100px if not set
+			$inputfield->optionImageMinWidth = 100;
+		}
+
 		return $inputfield;
 	}
 
@@ -106,6 +114,17 @@ class FieldtypeImageLabelOptions extends FieldtypeOptions implements Module {
 		$f->description = $this->_('Enter one per line in the format: option_id=image_url (or option_value=image_url)');
 		$f->notes = $this->_('Example: \n1=/site/assets/red.png\nmy_val=/site/assets/blue.png');
 		$f->value = $field->optionImages;
+		
+		$inputfields->add($f);
+
+		// Add the Minimum Image Width field
+		/** @var InputfieldInteger $f */
+		$f = $this->modules->get('InputfieldInteger');
+		$f->attr('name', 'optionImageMinWidth');
+		$f->label = $this->_('Minimum Image Width');
+		$f->description = $this->_('Minimum width in pixels for rendered images. Default is 100px.');
+		$f->value = $field->optionImageMinWidth ? $field->optionImageMinWidth : 100;
+		$f->attr('min', 1);
 		
 		$inputfields->add($f);
 
