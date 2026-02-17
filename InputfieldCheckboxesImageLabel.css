@@ -3,6 +3,13 @@
     gap:15px;
     --inputfield-image-label-options-desktop-width: 150px;
     --inputfield-image-label-options-mobile-width: 100px;
+    --inputfield-image-label-options-border-color: #d9e1ea;
+    --inputfield-image-label-options-checked-color: #3eb998;
+    --inputfield-image-label-options-label-color: #333;
+    --inputfield-image-label-options-text-bg: #f0f0f0;
+    --inputfield-image-label-options-text-checked-bg: #e0f0e9;
+    --inputfield-image-label-options-text-checked-color: #111;
+    --inputfield-image-label-options-border-width: 3px;
 }
 
 .InputfieldCheckboxesImageLabelWrapper .image-label-option {
@@ -32,7 +39,7 @@
 .InputfieldCheckboxesImageLabelWrapper .image-wrapper {
     display: block;
     width: var(--inputfield-image-label-options-mobile-width);
-    border: 3px solid transparent;
+    border: var(--inputfield-image-label-options-border-width) solid var(--inputfield-image-label-options-border-color);
     transition: border-color 0.2s ease;
 }
 
@@ -62,26 +69,26 @@
     margin-top: 8px;
     text-align: center;
     font-size: 0.9em;
-    color: #333;
+    color: var(--inputfield-image-label-options-label-color);
 }
 
 /* Checked state - highlight the image wrapper */
 .InputfieldCheckboxesImageLabelWrapper input[type="checkbox"]:checked + .content .image-wrapper {
-    border-color: #3eb998; /* ProcessWire primary color approx */
+    border-color: var(--inputfield-image-label-options-checked-color);
     outline: none;
 }
 
 /* Optional: Add some styles if it's just text, to make it look like a button */
 .InputfieldCheckboxesImageLabelWrapper .content:not(:has(img)) {
     padding: 5px 10px;
-    background: #f0f0f0;
+    background: var(--inputfield-image-label-options-text-bg);
     border-radius: 3px;
-    border: 3px solid transparent;
+    border: var(--inputfield-image-label-options-border-width) solid transparent;
     transition: border-color 0.2s ease;
 }
 
 .InputfieldCheckboxesImageLabelWrapper   input[type="checkbox"]:checked + .content:not(:has(img)) {
-    background: #e0f0e9;
-    border-color: #3eb998;
-    color: #111;
+    background: var(--inputfield-image-label-options-text-checked-bg);
+    border-color: var(--inputfield-image-label-options-checked-color);
+    color: var(--inputfield-image-label-options-text-checked-color);
 }
