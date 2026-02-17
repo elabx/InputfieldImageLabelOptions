@@ -1,5 +1,3 @@
-# InputfieldImageLabelOptions
-
 ProcessWire Inputfield modules that render radio buttons and checkboxes as selectable images or styled labels. Works as a drop-in for any `FieldtypeOptions` field — no custom Fieldtype required.
 
 Implements the technique from [this Stack Overflow answer](https://stackoverflow.com/a/17541916/3612981): hides the native input and styles the label content as the clickable selector.
